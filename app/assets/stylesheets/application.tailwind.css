@@ -11,3 +11,72 @@
 }
 
 */
+/* フレックスボックス */
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.flex-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* グリッドレイアウト */
+.grid-col-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+
+/* 余白 */
+.gap-sm {
+  gap: 10px;
+}
+.gap-md {
+  gap: 20px;
+}
+.gap-lg {
+  gap: 30px;
+}
+
+/* 横幅 */
+.w-sm {
+  width: 320px;
+}
+.w-md {
+  width: 480px;
+}
+.w-lg {
+  width: 640px;
+}
+
+/* テキストサイズ */
+.text-sm {
+  font-size: 12px;
+}
+.text-md {
+  font-size: 16px;
+}
+.text-lg {
+  font-size: 20px;
+}
+
+/* ボタン */
+.button {
+  width: 100%;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #ffffff;
+}
+.button:hover {
+  background-color: #0056b3;
+}
+.button.active {
+  background-color: #0056b3;
+}

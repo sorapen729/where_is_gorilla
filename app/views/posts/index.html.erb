@@ -1,11 +1,9 @@
 <div id="startPage" class="page w-md gap-lg">
   <div class="flex-col">
-    <h1 class="text-lg">65期クイズアプリ</h1>
-    <div class="text-md">同期がテーマのクイズアプリです。</div>
+    <h1 class="text-lg">ゴリラを探せ</h1>
+    <div class="text-md">ゴリラを見つけたらクリックしてね</div>
   </div>
   <div class="flex-col">
-    <button type="button" id="startButton" class="button text-md">
-      プレイする
-    </button>
+    <%= link_to 'スタート', quiz_pages_path, class: 'button text-md', id: 'startButton' %>
   </div>
 </div>

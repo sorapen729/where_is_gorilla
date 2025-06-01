@@ -80,3 +80,26 @@
 .button.active {
   background-color: #0056b3;
 }
+
+.quiz-image {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border: 2px solid red;
+}
+
+/* 画像の親要素は relative にして重ねられるようにする */
+#quizPage {
+  position: relative;
+}
+
+/* 間違い箇所を覆う透明リンク */
+.mistake-area {
+  position: absolute;
+  top: 100px;     /* 画像の上からの距離を調整 */
+  left: 150px;    /* 画像の左からの距離を調整 */
+  width: 50px;    /* 間違いの幅 */
+  height: 50px;   /* 間違いの高さ */
+  display: block;
+  background-color: rgba(255, 0, 0, 0.2); /* テスト中は色付きで確認。完成時は透明に */
+}

@@ -1,0 +1,9 @@
+<div id="quizPage" class="page relative">
+    <%= image_tag 'quiz1.png', alt: 'クイズ画像', class: 'quiz-image' %>
+
+  <!-- 間違い箇所へのリンク（画像の上に透明リンク） -->
+  <%= link_to result_pages_path, class: 'mistake-area' do %>
+  <% end %>
+
+  <%= link_to 'ホームへ戻る', root_path, class: 'home-button' %>
+</div>

@@ -1,6 +1,9 @@
-<div id="resultPage" class="page">
-  <h2>クイズ結果</h2>
-  <div id="resultMessage">正解ウホ！凄いウホね！</div>
+<div id="resultPage" class="page w-full max-w-md mx-auto px-4 py-8 bg-gradient-to-br from-[#0d2b23] to-[#1e4832] rounded-xl shadow-lg flex flex-col items-center gap-6 text-center">
+  <h2 class="text-5xl font-bold text-[#e8f5e9] drop-shadow">クリア！</h2>
+  <div id="resultMessage" class="text-3xl font-bold text-[#c8e6c9]">仲間に会えてうれしいウホ！</div>
 
-  <%= link_to 'ホームへ戻る', root_path, class: 'home-button' %>
+  <%= image_tag 'result_image.png', alt: '結果画像', class: 'w-full h-auto max-w-full mt-4 rounded' %>
+
+  <%= link_to 'スタートへ戻る', root_path, class: 'button text-md mt-4' %>
 </div>
+

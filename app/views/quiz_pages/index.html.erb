@@ -1,9 +1,56 @@
-<div id="quizPage" class="page relative">
-    <%= image_tag 'quiz1.png', alt: 'クイズ画像', class: 'quiz-image' %>
+<div id="quizPage" class="page relative w-full max-w-md mx-auto px-4 py-8 bg-gradient-to-br from-[#0d2b23] to-[#1e4832] rounded-xl shadow-lg flex flex-col items-center gap-6 overflow-hidden text-center">
 
-  <!-- 間違い箇所へのリンク（画像の上に透明リンク） -->
-  <%= link_to result_pages_path, class: 'mistake-area no-pointer' do %>
+  <%= image_tag 'quiz1.png', alt: 'クイズ画像', class: 'quiz-image w-full h-auto max-w-full block relative rounded' %>
+
+  <!-- 間違い箇所への透明リンク -->
+  <%= link_to result_pages_path, class: 'mistake-area absolute block bg-transparent no-pointer' do %>
   <% end %>
 
-  <%= link_to 'あきらめてホームへ戻る', root_path, class: 'home-button' %>
+  <div class="text-2xl font-bold text-[#c8e6c9] mt-2">ゴリラを見つけたらクリックしてね！</div>
+
+  <%= link_to 'あきらめる', root_path,
+    class: 'w-full max-w-[300px] px-4 py-2 rounded-md text-white text-md bg-[#3a7c59] hover:bg-[#2e5943] transition-colors duration-300 mt-4' %>
+
 </div>
+
+<!-- 画像のサイズに合わせてクリック領域を調整 -->
+<%= javascript_tag do %>
+  document.addEventListener('turbo:load', () => {
+    const img = document.querySelector('.quiz-image');
+    const area = document.querySelector('.mistake-area');
+
+    // 要素が存在しない場合は何もしない（他ページでエラーにならないため）
+    if (!img || !area) return;
+
+
+    // 元画像サイズ（px）
+    const originalWidth = 1024;
+    const originalHeight = 1024;
+
+    // 間違いの位置とサイズ（元画像基準）
+    const mistake = {
+      x: 455,       // ← 間違い領域の左上X座標（例）
+      y: 80,       // ← 間違い領域の左上Y座標（例）
+      width: 80,    // ← 間違いの横幅
+      height: 80    // ← 間違いの高さ
+    };
+
+    function updateMistakeArea() {
+      const scaleX = img.clientWidth / originalWidth;
+      const scaleY = img.clientHeight / originalHeight;
+
+      area.style.left = `${mistake.x * scaleX}px`;
+      area.style.top = `${mistake.y * scaleY}px`;
+      area.style.width = `${mistake.width * scaleX}px`;
+      area.style.height = `${mistake.height * scaleY}px`;
+    }
+
+    if (img.complete) {
+      updateMistakeArea();
+    } else {
+      img.onload = updateMistakeArea;
+    }
+
+    window.addEventListener('resize', updateMistakeArea);
+  });
+<% end %>

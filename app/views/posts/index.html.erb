@@ -1,9 +1,10 @@
-<div id="startPage" class="page w-md gap-lg">
-  <div class="flex-col">
-    <h1 class="text-lg">ゴリラを探せ</h1>
-    <div class="text-md">ゴリラを見つけたらクリックしてね</div>
+<div id="startPage" class="page w-full max-w-md mx-auto px-4 py-8 bg-gradient-to-br from-[#0d2b23] to-[#1e4832] rounded-xl shadow-lg">
+  <div class="flex-col items-center text-center">
+    <h1 class="text-4xl font-bold text-[#e8f5e9] drop-shadow">ゴリラを探せ</h1>
+    <%= image_tag 'top_image.png', alt: 'トップ画像', class: 'w-full h-auto mt-4 rounded' %>
   </div>
-  <div class="flex-col">
-    <%= link_to 'スタート', quiz_pages_path, class: 'button text-md', id: 'startButton' %>
+
+  <div class="flex-col items-center mt-6">
+    <%= link_to 'スタート', quiz_pages_path, class: 'button text-xl' %>
   </div>
 </div>

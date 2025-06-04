@@ -1,9 +1,80 @@
-<div id="quizPage" class="page relative">
-    <%= image_tag 'quiz1.png', alt: 'クイズ画像', class: 'quiz-image' %>
+<div id="quizPage" class="page relative w-full max-w-md mx-auto px-4 py-8 bg-gradient-to-br from-[#0d2b23] to-[#1e4832] rounded-xl shadow-lg flex flex-col items-center gap-6 overflow-hidden text-center">
 
-  <!-- 間違い箇所へのリンク（画像の上に透明リンク） -->
-  <%= link_to result_pages_path, class: 'mistake-area no-pointer' do %>
-  <% end %>
+  <%= image_tag 'quiz1.png', alt: 'クイズ画像', class: 'quiz-image w-full h-auto max-w-full block relative rounded' %>
 
-  <%= link_to 'あきらめてホームへ戻る', root_path, class: 'home-button' %>
+  <!-- 間違い箇所への透明リンク -->
+  <a href="#" id="mistakeArea" class="mistake-area absolute block bg-transparent no-pointer"></a>
+
+
+  <h1 class="text-4xl font-bold text-[#e8f5e9] drop-shadow"><%= t(".title") %></h1>
+  <div class="text-2xl font-bold text-[#c8e6c9] mt-2"><%= t(".text") %></div>
+
+  <%= link_to t(".button"), root_path,
+    class: 'w-full max-w-[300px] px-4 py-2 rounded-md text-white text-md bg-[#3a7c59] hover:bg-[#2e5943] transition-colors duration-300 mt-4' %>
+
 </div>
+
+<!-- 正解モーダル -->
+<div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full text-center">
+    <h2 class="text-2xl font-bold mb-4 text-green-700">正解ウホ！</h2>
+    <button id="confirmBtn" class="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+      OK
+    </button>
+  </div>
+</div>
+
+<!-- 画像のサイズに合わせてクリック領域を調整 -->
+<%= javascript_tag do %>
+  document.addEventListener('turbo:load', () => {
+    const img = document.querySelector('.quiz-image');
+    const area = document.querySelector('.mistake-area');
+
+    // 要素が存在しない場合は何もしない（他ページでエラーにならないため）
+    if (!img || !area) return;
+
+
+    // 元画像サイズ（px）
+    const originalWidth = 1024;
+    const originalHeight = 1024;
+
+    // 間違いの位置とサイズ（元画像基準）
+    const mistake = {
+      x: 450,       // ← 間違い領域の左上X座標（例）
+      y: 70,       // ← 間違い領域の左上Y座標（例）
+      width: 80,    // ← 間違いの横幅
+      height: 80    // ← 間違いの高さ
+    };
+
+    function updateMistakeArea() {
+      const scaleX = img.clientWidth / originalWidth;
+      const scaleY = img.clientHeight / originalHeight;
+
+      area.style.left = `${mistake.x * scaleX}px`;
+      area.style.top = `${mistake.y * scaleY}px`;
+      area.style.width = `${mistake.width * scaleX}px`;
+      area.style.height = `${mistake.height * scaleY}px`;
+    }
+
+    if (img.complete) {
+      updateMistakeArea();
+    } else {
+      img.onload = updateMistakeArea;
+    }
+
+    window.addEventListener('resize', updateMistakeArea);
+  });
+
+  const modal = document.getElementById('successModal');
+  const confirmBtn = document.getElementById('confirmBtn');
+  const mistakeArea = document.getElementById('mistakeArea');
+
+  mistakeArea.addEventListener('click', (e) => {
+    e.preventDefault();
+    modal.classList.remove('hidden');
+  });
+
+  confirmBtn.addEventListener('click', () => {
+    window.location.href = "<%= result_pages_path %>";
+  });
+<% end %>

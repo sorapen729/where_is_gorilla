@@ -65,27 +65,30 @@
   font-size: 20px;
 }
 
-/* ボタン */
+/* ボタン共通スタイル */
 .button {
   width: 100%;
+  max-width: 300px;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
-  background-color: #007bff;
+  border-radius: 8px;
+  background-color: #2e8b57; /* シーグリーン */
   color: #ffffff;
+  text-align: center;
+  transition: background-color 0.3s;
+  font-size: 16px;
 }
 .button:hover {
-  background-color: #0056b3;
+  background-color: #276749; /* ダークグリーン */
 }
 .button.active {
-  background-color: #0056b3;
+  background-color: #276749;
 }
 
 .quiz-image {
   width: 100%;
-  max-width: 300px;
+  max-width: 100%; /* ← モバイルで横幅一杯に表示させるなら */
   height: auto;
-  border: 2px solid red;
 }
 
 /* 画像の親要素は relative にして重ねられるようにする */
@@ -93,19 +96,26 @@
   position: relative;
 }
 
-/* 間違い箇所を覆う透明リンク */
-.mistake-area {
-  position: absolute;
-  top: 12px;     /* 画像の上からの距離を調整 */
-  left: 120px;    /* 画像の左からの距離を調整 */
-  width: 25px;    /* 間違いの幅 */
-  height: 25px;   /* 間違いの高さ */
-  display: block;
-  /* background-color: rgba(255, 0, 0, 0.2); */ /* テスト中は色付きで確認。完成時は透明に */
-  background-color: transparent; /* 色なしの完全透明 */
-}
 
 .no-pointer {
   cursor: default;
   pointer-events: auto; /* ← リンク動作を維持したい場合は必要 */
 }
+
+/* 各ページ用の共通設定 */
+.page {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem; /* Tailwind的に gap-6 相当 */
+  text-align: center;
+}
+
+/* 結果ページ専用スタイル（必要なら） */
+/*#resultMessage {
+  font-size: 1rem;
+} */

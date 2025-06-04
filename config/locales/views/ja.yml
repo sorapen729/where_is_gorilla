@@ -1,0 +1,15 @@
+ja:
+  posts:
+    index:
+      title: ゴリラを探せ
+      button: スタート
+  quiz_pages:
+    index:
+      title: クイズ 1問目/全1問
+      text: ゴリラを見つけたらクリックしてね！
+      button: あきらめる
+  result_pages:
+    index:
+      title: クリア！
+      text: 仲間に会えてうれしいウホ！
+      button: スタートへ戻る
